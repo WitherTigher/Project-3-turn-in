@@ -116,14 +116,13 @@ class _MyAppState extends State<MyApp> {
       title: 'Pokemon Prev/Next Demo',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: const Color.fromARGB(255, 255, 0, 0),
+        colorSchemeSeed: const Color.fromARGB(255, 250, 72, 72),
       ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Pokemon API Demo'),
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
-          centerTitle: true,
           actions: [
             // Prev button in the AppBar
             IconButton(
@@ -131,6 +130,13 @@ class _MyAppState extends State<MyApp> {
               tooltip: 'Previous Pokemon',
               icon: const Icon(Icons.navigate_before),
             ),
+            const SizedBox(width: 3),
+            IconButton(
+              onPressed: _loading ? null : () => _loadId(_currentId),
+              tooltip: 'Reload current Pokemon',
+              icon: const Icon(Icons.refresh),
+            ),
+            const SizedBox(width: 3),
             // Next button in the AppBar
             IconButton(
               onPressed: _loading ? null : _next,
@@ -159,16 +165,13 @@ class _MyAppState extends State<MyApp> {
                         _loading) {
                       return const CircularProgressIndicator();
                     }
-
                     // If there was an error, show it + Retry button
                     if (snapshot.hasError) {
                       return Padding(
                         padding: const EdgeInsets.all(16),
                         child: Card(
                           color: Colors.red,
-
                           margin: const EdgeInsets.all(16),
-
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -176,14 +179,13 @@ class _MyAppState extends State<MyApp> {
                             padding: EdgeInsets.all(16),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
-
                               children: [
                                 const Icon(
                                   Icons.error,
-                                  size: 50,
+                                  size: 142,
                                   color: Colors.white,
                                 ),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 19),
                                 Text(
                                   'Error: ${snapshot.error}',
                                   textAlign: TextAlign.center,
@@ -192,14 +194,13 @@ class _MyAppState extends State<MyApp> {
                                     color: Colors.white,
                                   ),
                                 ),
-
                                 const SizedBox(height: 12),
                                 FilledButton.icon(
                                   onPressed: () => _loadId(_currentId),
                                   icon: const Icon(Icons.refresh),
                                   label: const Text('Retry'),
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(height: 9),
                                 FilledButton.icon(
                                   onPressed: () => _loadId(minId),
                                   icon: const Icon(Icons.home),
@@ -211,13 +212,11 @@ class _MyAppState extends State<MyApp> {
                         ),
                       );
                     }
-
                     // Success: render album data inside a Card
                     final album = snapshot.data!;
                     return Card(
                       color: Colors.red,
                       margin: const EdgeInsets.all(16),
-
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -225,7 +224,6 @@ class _MyAppState extends State<MyApp> {
                         padding: EdgeInsets.all(16),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-
                           children: [
                             if (album.sprite != null)
                               Image.network(
@@ -291,18 +289,15 @@ class _MyAppState extends State<MyApp> {
               ),
             ],
           ),
-
           // FutureBuilder listens to our _futureAlbum
         ),
         // Bottom bar with both Prev and Next buttons
         bottomNavigationBar: Container(
           margin: const EdgeInsets.only(bottom: 16),
           child: SizedBox(
-            height: 120,
-
+            height: 180,
             child: Padding(
               padding: const EdgeInsets.all(8),
-
               child: Column(
                 children: [
                   Row(
@@ -313,6 +308,7 @@ class _MyAppState extends State<MyApp> {
                         icon: const Icon(Icons.arrow_back),
                         label: const Text('Prev'),
                       ),
+                      const SizedBox(width: 44),
                       FilledButton.icon(
                         onPressed: _loading ? null : _next,
                         icon: const Icon(Icons.arrow_forward),
@@ -329,6 +325,7 @@ class _MyAppState extends State<MyApp> {
                         icon: const Icon(Icons.refresh),
                         label: const Text('Reload'),
                       ),
+                      const SizedBox(width: 20),
                       FilledButton.icon(
                         onPressed: _loading ? null : _break,
                         icon: const Icon(Icons.error),
