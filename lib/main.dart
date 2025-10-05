@@ -218,10 +218,10 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.red,
                       margin: const EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(26),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(43),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -233,7 +233,7 @@ class _MyAppState extends State<MyApp> {
                               )
                             else
                               CircleAvatar(child: Text('${album.id}')),
-                            const SizedBox(height: 0),
+                            const SizedBox(height: 3),
                             Text(
                               album.name.toUpperCase(),
                               style: TextStyle(
@@ -265,21 +265,8 @@ class _MyAppState extends State<MyApp> {
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                FilledButton(
-                                  onPressed: _loading ? null : _prev,
-                                  child: const Text('Back'),
-                                ),
-                                const SizedBox(width: 20),
-                                FilledButton(
-                                  onPressed: _loading ? null : _next,
-                                  child: const Text('Next'),
-                                ),
-                              ],
-                            ),
+                            const SizedBox(height: 11),
+                            const SizedBox(width: 11),
                           ],
                         ),
                       ),
