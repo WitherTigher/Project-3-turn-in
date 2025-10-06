@@ -293,7 +293,7 @@ class _MyAppState extends State<MyApp> {
                       //I then use a child with padding
                       child: Padding(
                         //then use the padding to make the card bigger
-                        padding: EdgeInsets.all(83),
+                        padding: EdgeInsets.all(53),
                         //I then use a child column to hold the information in a column
                         child: Column(
                           //I then set everything to the min size of the main axis size
